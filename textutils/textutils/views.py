@@ -9,14 +9,14 @@ def index(request):
 
 def analyze(request):
     # Get the text
-    djtext = request.GET.get('text', 'default')
+    djtext = request.POST.get('text', 'default')
 
     # Check checkbox values
-    removepunc = request.GET.get('removepunc', 'off')
-    fullcaps = request.GET.get('fullcaps', 'off')
-    newlineremover = request.GET.get('newlineremover', 'off')
-    extraspaceremover = request.GET.get('extraspaceremover', 'off')
-    numberremover = request.GET.get('numberremover', 'off')
+    removepunc = request.POST.get('removepunc', 'off')
+    fullcaps = request.POST.get('fullcaps', 'off')
+    newlineremover = request.POST.get('newlineremove', 'off')
+    extraspaceremover = request.POST.get('extraspaceremover', 'off')
+    numberremover = request.POST.get('numberremover', 'off')
 
     # Check which checkbox is on
     if removepunc == "on":
@@ -26,7 +26,7 @@ def analyze(request):
             if char not in punctuations:
                 analyzed = analyzed + char
 
-        params = {'purpose': 'Removed Punctuations', 'analyzed_text': analyzed}
+        # params = {'purpose': 'Removed Punctuations', 'analyzed_text': analyzed}
         djtext = analyzed
 
     if (fullcaps == "on"):
@@ -34,7 +34,7 @@ def analyze(request):
         for char in djtext:
             analyzed = analyzed + char.upper()
 
-        params = {'purpose': 'Changed to Uppercase', 'analyzed_text': analyzed}
+        # params = {'purpose': 'Changed to Uppercase', 'analyzed_text': analyzed}
         djtext = analyzed
 
     if (extraspaceremover == "on"):
@@ -48,7 +48,7 @@ def analyze(request):
             elif not (djtext[index] == " " and djtext[index + 1] == " "):
                 analyzed = analyzed + char
 
-        params = {'purpose': 'Removed NewLines', 'analyzed_text': analyzed}
+        # params = {'purpose': 'Removed NewLines', 'analyzed_text': analyzed}
         djtext = analyzed
 
     if (newlineremover == "on"):
@@ -56,8 +56,8 @@ def analyze(request):
         for char in djtext:
             if char != "\n" and char != "\r":
                 analyzed = analyzed + char
-
-        params = {'purpose': 'Removed NewLines', 'analyzed_text': analyzed}
+        djtext = analyzed
+        # params = {'purpose': 'Removed NewLines', 'analyzed_text': analyzed}
 
     if (numberremover == "on"):
         analyzed = ""
@@ -70,10 +70,13 @@ def analyze(request):
         params = {'purpose': 'Removed NewLines', 'analyzed_text': analyzed}
         djtext = analyzed
 
-    if (
-            removepunc != "on" and newlineremover != "on" and extraspaceremover != "on" and fullcaps != "on" and numberremover != "on"):
+    if removepunc != "on" and newlineremover != "on" and extraspaceremover != "on" and fullcaps != "on" and numberremover != "on":
         return HttpResponse("please select any operation and try again")
-
+    length = 0
+    for char in djtext:
+        if (char <= 'z' and char >= 'a') or (char <= 'Z' and char >= 'A'):
+            length = length + 1
+    params = {'analyzed_text': djtext, 'charcount': length}
     return render(request, 'analyze.html', params)
 
 
