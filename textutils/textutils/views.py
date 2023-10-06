@@ -37,6 +37,17 @@ def analyze(request):
         # params = {'purpose': 'Changed to Uppercase', 'analyzed_text': analyzed}
         djtext = analyzed
 
+    if (numberremover == "on"):
+        analyzed = ""
+        numbers = '0123456789'
+
+        for char in djtext:
+            if char not in numbers:
+                analyzed = analyzed + char
+
+        # params = {'purpose': 'Removed NewLines', 'analyzed_text': analyzed}
+        djtext = analyzed
+
     if (extraspaceremover == "on"):
         analyzed = ""
         for index, char in enumerate(djtext):
@@ -58,17 +69,6 @@ def analyze(request):
                 analyzed = analyzed + char
         djtext = analyzed
         # params = {'purpose': 'Removed NewLines', 'analyzed_text': analyzed}
-
-    if (numberremover == "on"):
-        analyzed = ""
-        numbers = '0123456789'
-
-        for char in djtext:
-            if char not in numbers:
-                analyzed = analyzed + char
-
-        params = {'purpose': 'Removed NewLines', 'analyzed_text': analyzed}
-        djtext = analyzed
 
     if removepunc != "on" and newlineremover != "on" and extraspaceremover != "on" and fullcaps != "on" and numberremover != "on":
         return HttpResponse("please select any operation and try again")

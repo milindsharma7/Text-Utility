@@ -1,21 +1,79 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>TextUtils - Text Editor</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>-->
+<!--    Welcome to TextUtils! Enter your text below-->
+<!--</h1>-->
+<!--<form action="/analyze" method="post">{% csrf_token %}-->
+<!--    <textarea name="text"></textarea>-->
+<!--    <input type="checkbox" name="removepunc"> Remove Punctuations-->
+<!--    <input type="checkbox" name="fullcaps"> Uppercase-->
+<!--    <input type="checkbox" name="newlineremove"> Remove New Line-->
+<!--    <input type="checkbox" name="extraspaceremover"> Remove Extra Space-->
+<!--    <input type="checkbox" name="numberremover"> Remove Numbers-->
+<!--    <button type="submit">Analyze Text</button>-->
+<!--</form>-->
+<!--</body>-->
+<!--</html>-->
+
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>TextUtils - Text Editor</title>
-</head>
-<body>
-<h1>
-    Welcome to TextUtils! Enter your text below
-</h1>
-<form action="/analyze" method="post">{% csrf_token %}
-    <textarea name="text"></textarea>
-    <input type="checkbox" name="removepunc"> Remove Punctuations
-    <input type="checkbox" name="fullcaps"> Uppercase
-    <input type="checkbox" name="newlineremove"> Remove New Line
-    <input type="checkbox" name="extraspaceremover"> Remove Extra Space
-    <input type="checkbox" name="numberremover"> Remove Numbers
-    <button type="submit">Analyze Text</button>
-</form>
-</body>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  </head>
+  <body>
+  <nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+      <span class="navbar-brand mb-0 h1">TextUtils - Edit and Analyze Your Text!</span>
+    </div>
+  </nav>
+
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>Welcome to TextUtils!</strong> Enter your text below -
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
+  <div class="container">
+    <form action="/analyze" method="post">{% csrf_token %}
+      <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Please enter your text</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="10" name="text"></textarea>
+      </div>
+
+      <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault1" name="removepunc">
+        <label class="form-check-label" for="flexSwitchCheckDefault1">Remove Punctuations</label>
+      </div>
+  <!--    name="fullcaps"> Uppercase-->
+      <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault2" name="fullcaps">
+        <label class="form-check-label" for="flexSwitchCheckDefault2">Uppercase</label>
+      </div>
+  <!--    name="newlineremove"> Remove New Line-->
+      <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault3" name="newlineremove">
+        <label class="form-check-label" for="flexSwitchCheckDefault3">Remove New Line</label>
+      </div>
+  <!--    name="extraspaceremover"> Remove Extra Space-->
+      <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault4" name="extraspaceremover">
+        <label class="form-check-label" for="flexSwitchCheckDefault4">Remove Extra Space</label>
+      </div>
+  <!--    name="numberremover"> Remove Numbers-->
+      <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault5" name="numberremover">
+        <label class="form-check-label" for="flexSwitchCheckDefault5">Remove Numbers</label>
+      </div>
+    <button type="submit" class="btn btn-success mt-2">Edit !</button>
+    </form>
+  </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  </body>
 </html>
