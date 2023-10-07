@@ -49,18 +49,9 @@ def analyze(request):
         djtext = analyzed
 
     if (extraspaceremover == "on"):
-        analyzed = ""
-        for index, char in enumerate(djtext):
-            # It is for if a extraspace is in the last of the string
-            if char == djtext[-1]:
-                if not (djtext[index] == " "):
-                    analyzed = analyzed + char
-
-            elif not (djtext[index] == " " and djtext[index + 1] == " "):
-                analyzed = analyzed + char
-
-        # params = {'purpose': 'Removed NewLines', 'analyzed_text': analyzed}
-        djtext = analyzed
+        import re
+        output_string = re.sub(' +', ' ', djtext).strip()
+        djtext = output_string
 
     if (newlineremover == "on"):
         analyzed = ""

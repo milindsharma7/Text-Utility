@@ -1,7 +1,24 @@
-Screenshots:
+# TextUtils - Your Text Editor #
 
-![img.png](img.jpeg)
+### Using Textutils, you can perform various operations on your input text such as: ###
 
-![img_2.png](img_2.jpeg)
+- Remove punctuations
+- Convert to uppercase
+- Remove new line
+- Remove extra spaces
+- Remove numbers
 
-![img_1.png](img_1.jpeg)
+### Tech Stack ###
+
+- Python
+- Django
+- HTML5
+- CSS
+- Bootstrap
+
+Demo:
+
+[Full demo on Youtube](https://youtu.be/cbFGT_o93jY)
+
+![Demo](https://gifs.com/gif/pZpZYm)
+
