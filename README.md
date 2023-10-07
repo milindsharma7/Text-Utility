@@ -20,5 +20,5 @@ Demo:
 
 [Full demo on Youtube](https://youtu.be/cbFGT_o93jY)
 
-![Demo](https://gifs.com/gif/pZpZYm)
+![Demo](https://j.gifs.com/pZpZYm.gif)
 
